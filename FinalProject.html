@@ -34,6 +34,76 @@ function addMarker(){
 	var marker2 = new google.maps.Marker({
         position: {lat: lat2, lng: long2},
         map: map,
+        title: name,
+        fillColor: 'blue'
+    });
+	var desc = document.getElementById("features").value
+    	var contentString1 = desc;
+	
+    	var infowindow1 = new google.maps.InfoWindow({
+      	content: contentString1
+    });
+    	google.maps.event.addListener(marker2, 'click', function() {
+      	infowindow1.open(map,marker2);
+    });
+
+
+
+}
+
+function addFoodMarker(){
+	var lat2 = parseFloat(document.getElementById("lat").value)
+	var long2 = parseFloat(document.getElementById("long").value)
+	var name = document.getElementById("rName").value
+	loc.push(name);
+	var marker2 = new google.maps.Marker({
+        position: {lat: lat2, lng: long2},
+        map: map,
+	   icon: {
+      	path: google.maps.SymbolPath.CIRCLE,
+      	scale: 9,
+		fillColor: 'green',
+		fillOpacity: 1.0,
+		strokeWeight: 3, 
+		strokeCapacity: 1.0
+   	     
+    	   },
+
+        title: name
+    });
+
+   	var desc = document.getElementById("features").value
+    	var contentString1 = desc;
+	
+    	var infowindow1 = new google.maps.InfoWindow({
+      	content: contentString1
+    });
+    	google.maps.event.addListener(marker2, 'click', function() {
+      	infowindow1.open(map,marker2);
+    });
+
+
+
+}
+
+function addWaterMarker(){
+	var lat2 = parseFloat(document.getElementById("lat").value)
+	var long2 = parseFloat(document.getElementById("long").value)
+	var name = document.getElementById("rName").value
+	loc.push(name);
+	var marker2 = new google.maps.Marker({
+        position: {lat: lat2, lng: long2},
+        map: map,
+	   icon: {
+      	path: google.maps.SymbolPath.CIRCLE,
+      	scale: 9,
+		fillColor: 'blue',
+		fillOpacity: 1.0,
+		strokeWeight: 3,
+		strokeOpacity: 1.0
+   	     
+    	   },
+
         title: name
     });
 	var desc = document.getElementById("features").value
@@ -49,11 +119,48 @@ function addMarker(){
 
 
 }
+
+function addMedicineMarker(){
+	var lat2 = parseFloat(document.getElementById("lat").value)
+	var long2 = parseFloat(document.getElementById("long").value)
+	var name = document.getElementById("rName").value
+	loc.push(name);
+	var marker2 = new google.maps.Marker({
+        position: {lat: lat2, lng: long2},
+        map: map,
+	   icon: {
+      	path: google.maps.SymbolPath.CIRCLE,
+      	scale: 9,
+		fillColor: 'red',
+		fillOpacity: 1.0,
+		strokeWeight: 3,
+		strokeCapacity: 1.0
+   	     
+    	   },
+
+        title: name
+    });
+
+	var desc = document.getElementById("features").value
+    	var contentString1 = desc;
+	
+    	var infowindow1 = new google.maps.InfoWindow({
+      	content: contentString1
+    });
+    	google.maps.event.addListener(marker2, 'click', function() {
+      	infowindow1.open(map,marker2);
+    });
+
+
+
+}
+
+	
 </script> 
 <script type="text/javascript">
   var map;
   function initialize() {
-    var latlng = new google.maps.LatLng(46.84, -96.85);
+    var latlng = new google.maps.LatLng(46.8929, -96.8009);
     var myOptions = {
       zoom: 13,
       center: latlng,
@@ -64,11 +171,11 @@ function addMarker(){
     map = new google.maps.Map(document.getElementById("map_canvas"),
       myOptions);
 
-    var marker = new google.maps.Marker({
-      position: {lat: 46.9, lng: -96.85},
-      map: map,
-      title: "My First Marker!"
-    });
+ //   var marker = new google.maps.Marker({
+ //     position: {lat: 46.9, lng: -96.85},
+ //     map: map,
+ //     title: "My First Marker!"
+ //   });
     var contentString = 'Look at my window!';
     var infowindow = new google.maps.InfoWindow({
       content: contentString
@@ -86,23 +193,30 @@ function addMarker(){
 	<h2><font size = "4"><b> I would like to... </b></font></h2>
   	<div class = "row">
 	   <div class = "column">
-		<h2><font size = "4"><b>Add a Service</b></font></h2>
+		<h2><font size = "4"><b>Add a Food Source</b></font></h2>
 		Latitude:<input type = "number" id = "lat"><br>
 		Longitude: <input type = "number" id = "long"><br>
 		Service Name: <input type = "text" id = "rName"><br>
 		Features: <input type = "text" id = "features"><br>
-		<button type="button" onclick = "addMarker()">Add</button><br>
+		<button type="button" onclick = "addFoodMarker()">Add</button><br>
 	   </div>
 	   <div class = "column">
-		<h2><font size = "4"><b>Search for a Service</b></font></h2>
-		Name: <input type = "text" name = "rSearch"><br>
-		<button type="button" >Search</button><br>
-		<p id = "result"></p>
+		<h2><font size = "4"><b>Add a Water Source</b></font></h2>
+		Latitude:<input type = "number" id = "lat"><br>
+		Longitude: <input type = "number" id = "long"><br>
+		Service Name: <input type = "text" id = "rName"><br>
+		Features: <input type = "text" id = "features"><br>
+		<button type="button" onclick = "addWaterMarker()">Add</button><br>
+
 	   </div>
 	   <div class = "column">
-		<h2><font size = "4"><b>Edit a Description</b></font></h2>
-		Additional Comments: <input type = "text" name = "edit"><br>
-		<button type="button">Edit</button>
+		<h2><font size = "4"><b>Add a Medical Source</b></font></h2>
+		Latitude:<input type = "number" id = "lat"><br>
+		Longitude: <input type = "number" id = "long"><br>
+		Service Name: <input type = "text" id = "rName"><br>
+		Features: <input type = "text" id = "features"><br>
+		<button type="button" onclick = "addMedicineMarker()">Add</button><br>
+
 	   </div>
 	</div>
 	
